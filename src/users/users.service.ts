@@ -10,24 +10,28 @@ export class UsersService {
 
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
+    return await createdUser.save();
   }
 
-  findAll() {
-    return this.userModel.find().exec();
+  async findAll(): Promise<User[]> {
+    return await this.userModel.find().exec();
   }
 
-  findOne(id: string) {
-    return this.userModel.find({ _id: id }).exec();
+  async findOne(id: string): Promise<User> {
+    return await this.userModel.find({ _id: id }).exec()[0];
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userModel.findOneAndUpdate({ _id: id }, updateUserDto).exec();
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    return await this.userModel.findOneAndUpdate({ _id: id }, updateUserDto).exec();
   }
 
-  remove(id: string) {
-    return this.userModel.findOneAndDelete({ _id: id }).exec();
+  async remove(id: string): Promise<User> {
+    return await this.userModel.findOneAndDelete({ _id: id }).exec();
+  }
+
+  async findUserByUser(user: string): Promise<User> {
+    return await this.userModel.findOne({ user }).exec();
   }
 }
