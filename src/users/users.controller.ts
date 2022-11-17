@@ -51,4 +51,15 @@ export class UsersController {
     }
     throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
   }
+
+  @Post('register')
+  @HttpCode(200)
+  async register(@Body() register: CreateUserDto) {
+    const { user } = register;
+    const userFromDB = await this.usersService.findUserByUser(user);
+    if (userFromDB) {
+      throw new HttpException('Usuario ya registrado', HttpStatus.CONFLICT);
+    }
+    return await this.usersService.create(register);
+  }
 }
