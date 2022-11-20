@@ -27,6 +27,7 @@ export class AttendanceController {
         @Body() alumnoData: User,
         @Param('classId') classId: string
     ) {
+        console.log({ alumnoData, classId });
 
         if (!this.isValidObjectId(classId)) {
             throw new HttpException('Invalid classId', 400);
