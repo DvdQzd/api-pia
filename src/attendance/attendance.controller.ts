@@ -61,9 +61,7 @@ export class AttendanceController {
         // send email to profesor
         this.sendAlumnoEmail(alumno, classData);
 
-        return {
-            message: 'Alumno added to class'
-        }
+        return classData;
     }
 
     private async sendAlumnoEmail(alumno: User, classData: any) {
