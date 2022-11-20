@@ -3,4 +3,5 @@ export class CreateUserDto {
     contrasena: string;
     user: string;
     correo: string;
+    rol?: string;
 }

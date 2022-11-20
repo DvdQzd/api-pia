@@ -34,4 +34,8 @@ export class UsersService {
   async findUserByUser(user: string): Promise<User> {
     return await this.userModel.findOne({ user }).exec();
   }
+
+  async findUserByCorreo(correo: string): Promise<User> {
+    return await this.userModel.findOne({ correo }).exec();
+  }
 }
