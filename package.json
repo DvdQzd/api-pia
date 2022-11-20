@@ -25,7 +25,6 @@
     "node": ">=16.17.0",
     "npm": ">=8.15.0"
   },
-  },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.8.1",
     "@nestjs/common": "^9.0.0",
